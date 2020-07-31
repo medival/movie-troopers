@@ -8,20 +8,64 @@ $(document).ready(function () {
 	const apiKey = '347b5a9b833c7d6e9204afe6d6ddc4a2';
 
 	const discoverURL = apiBaseURL + 'movie/now_playing?api_key=' + apiKey;
-
 	//==============================================================================
 	//====================== Get "now playing" data on default. ====================
 	//=================== Change results when a genre is clicked on.================
 	//==============================================================================
+	const endPoint = apiBaseURL + 'movie/popular?api_key=' + apiKey;
+
+	function fetchUserData() {
+		fetch(endPoint)
+			.then(response => response.json())
+			.then(results => movies = results.results)
+			.then(movies => {
+				let poster = `<div class="row ml-5">`;
+				movies.forEach(function (movie) {
+					poster += `
+						<div class="card text-white bg-dark ml-2 mr-2 mb-4" style="width: 15rem;" data-toggle="modal" data-target="#${movie.id}">
+							<img class="card-img-top" src="https://image.tmdb.org/t/p/w300/${movie.poster_path}" alt="Card image cap">
+							<div class="card-body">
+								<h6 class="card-text"> ${movie.original_title}</h6>
+								<p class="card-text"> ${movie.release_date} <span class="ml-5"> ${movie.vote_average}/10 </span></p>
+							</div>
+						</div>`;
+					poster += `
+						<div class="modal fade" id="${movie.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="${movie.id}"> ${movie.original_title} </h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+								<div class="modal-body">
+									${movie.original_title}
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary">Save changes</button>
+								</div>
+								</div>
+							</div>
+						</div>`;
+				});
+				poster += '</div>'
+				document.getElementById("movie-list").innerHTML = poster;
+			});
+	}
+
+	fetchUserData();
+
 	function getDiscoverData() {
 		$.getJSON(discoverURL, function (discoverData) {
 			// console.log(nowPlayingData);
 			//we needed to add .results because nowPlayingData is an array.
 			for (let i = 0; i < discoverData.results.length; i++) {
 				// w300 is how wide it is
-				var mid = discoverData.results[i].id;
+				const mid = discoverData.results[i].id;
 				// mid = movie ID
-				var thisMovieUrl = apiBaseURL + 'movie/' + mid + '/videos?api_key=' + apiKey;
+				const thisMovieUrl = apiBaseURL + 'movie/' + mid + '/videos?api_key=' + apiKey;
 				// console.log(i)
 
 				$.getJSON(thisMovieUrl, function (movieKey) {
@@ -44,24 +88,27 @@ $(document).ready(function () {
 					// 	}
 					// })
 
-					var poster = imageBaseUrl + 'w300' + discoverData.results[i].poster_path;
+					const poster = imageBaseUrl + 'w500' + discoverData.results[i].poster_path;
 					// console.log(poster);
 
-					var title = discoverData.results[i].original_title;
+					// const row = `<div class="row ml-5">`
+					// const poster = ``;
 
-					var releaseDate = discoverData.results[i].release_date;
+					const title = discoverData.results[i].original_title;
 
-					var overview = discoverData.results[i].overview;
+					const releaseDate = discoverData.results[i].release_date;
+
+					const overview = discoverData.results[i].overview;
 					// $('.overview').addClass('overview');
 
-					var voteAverage = discoverData.results[i].vote_average;
+					const voteAverage = discoverData.results[i].vote_average;
 					// console.log(movieKey)
-					var youtubeKey = movieKey.results[0].key;
+					const youtubeKey = movieKey.results[0].key;
 
-					var youtubeLink = 'https://www.youtube.com/watch?v=' + youtubeKey;
+					const youtubeLink = 'https://www.youtube.com/watch?v=' + youtubeKey;
 					// console.log(youtubeLink)
 
-					var discoverHTML = '';
+					let discoverHTML = '';
 					// added in i to discoverHTML. Without it, only the details for the first movie in the results display in the modal no matter which movie poster you click on.
 					discoverHTML += '<div class="col-sm-3 eachMovie">';
 					discoverHTML += '<button type="button" class="btnModal" data-toggle="modal" data-target="#exampleModal' + i + '" data-whatever="@' + i + '">' + '<img src="' + poster + '"></button>';
@@ -94,6 +141,9 @@ $(document).ready(function () {
 
 					$('#movie-grid').append(discoverHTML);
 					//Without this line, there is nowhere for the posters and overviews to display so it doesn't show up 
+					// $('#op').html('<div class="row ml-5">');
+					// $('#movie-list').append(discoveryHTML);
+					// $('#ed').html('</div>');
 					$('#movieGenreLabel').html("Discover Movie");
 					//h1 will change depending on what is clicked. Will display "Now Playing" in this case.
 				})
@@ -128,8 +178,8 @@ $(document).ready(function () {
 		$.getJSON(getMoviesByGenreURL, function (genreData) {
 			// console.log(genreData)
 			for (let i = 0; i < genreData.results.length; i++) {
-				var mid = genreData.results[i].id;
-				var thisMovieUrl = apiBaseURL + 'movie/' + mid + '/videos?api_key=' + apiKey;
+				const mid = genreData.results[i].id;
+				const thisMovieUrl = apiBaseURL + 'movie/' + mid + '/videos?api_key=' + apiKey;
 
 				$.getJSON(thisMovieUrl, function (movieKey) {
 					var poster = imageBaseUrl + 'w300' + genreData.results[i].poster_path;
