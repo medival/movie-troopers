@@ -1,0 +1,66 @@
+:root {
+	--primary-color: #24273D;
+	--secondary-color: #2A3246;
+}
+
+body {
+	background-color: var(--primary-color);
+}
+
+img {
+	max-width: 100%;
+	border: 2px white solid;
+}
+
+.navbar-brand {
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+}
+
+.rating {
+	font-weight: bold;
+}
+
+.release {
+	font-weight: bold;
+}
+
+.eachMovie {
+	background-color: var(--primary-color);
+	color: white;
+}
+
+.btnModal {
+	background-color: black;
+	margin-bottom: 35px;
+	border: black;
+}
+
+.modal-content {
+	color: black;
+	padding: 2px;
+	min-width: 656px;
+}
+
+.moviePosterInModal {
+	padding: 12px;
+}
+
+.movieName {
+	font-size: 30px;
+	font-weight: bold;
+	font-family: 'Carrois Gothic SC', sans-serif;
+}
+
+.btn-primary {
+	margin: 5px;
+	padding: 5px;
+	background: transparent;
+	color: #5EADFF;
+	border: 1px solid #5EADFF;
+}
+
+#movieGenreLabel {
+	color: white;
+}
