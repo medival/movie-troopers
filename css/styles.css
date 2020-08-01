@@ -1,66 +1,34 @@
 :root {
 	--primary-color: #24273D;
-	--secondary-color: #2A3246;
+	--secondary-color: #343A40;
 }
 
 body {
 	background-color: var(--primary-color);
 }
 
-img {
-	max-width: 100%;
-	border: 2px white solid;
-}
+/* .modal-content {
+	background: url('https://cdn.techinasia.com/wp-content/uploads/2011/09/Doodle4Google-2010-Group-1-Winner.jpg');
+} */
 
 .navbar-brand {
 	font-size: 20px;
 	font-weight: bold;
-	color: white;
+	color: var(--secondary-color);
 }
 
-.rating {
-	font-weight: bold;
-}
-
-.release {
-	font-weight: bold;
-}
-
-.eachMovie {
-	background-color: var(--primary-color);
-	color: white;
-}
-
-.btnModal {
-	background-color: black;
-	margin-bottom: 35px;
-	border: black;
+.modal-dialog {
+	min-width: 100%;
+	color: red;
 }
 
 .modal-content {
-	color: black;
+	background: var(--secondary-color);
 	padding: 2px;
-	min-width: 656px;
+	/* min-width: 656px; */
 }
 
-.moviePosterInModal {
-	padding: 12px;
-}
-
-.movieName {
-	font-size: 30px;
+.movie-title {
 	font-weight: bold;
 	font-family: 'Carrois Gothic SC', sans-serif;
-}
-
-.btn-primary {
-	margin: 5px;
-	padding: 5px;
-	background: transparent;
-	color: #5EADFF;
-	border: 1px solid #5EADFF;
-}
-
-#movieGenreLabel {
-	color: white;
 }

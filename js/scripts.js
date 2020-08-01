@@ -8,389 +8,63 @@ $(document).ready(function () {
 	const apiKey = '347b5a9b833c7d6e9204afe6d6ddc4a2';
 
 	const discoverURL = apiBaseURL + 'movie/now_playing?api_key=' + apiKey;
-	//==============================================================================
-	//====================== Get "now playing" data on default. ====================
-	//=================== Change results when a genre is clicked on.================
-	//==============================================================================
-	const endPoint = apiBaseURL + 'movie/popular?api_key=' + apiKey;
 
-	function fetchUserData() {
+	const endPoint = apiBaseURL + 'trending/movie/week?api_key=' + apiKey;
+
+	console.log(endPoint);
+
+	function fetchMovieData() {
 		fetch(endPoint)
 			.then(response => response.json())
 			.then(results => movies = results.results)
 			.then(movies => {
 				let poster = `<div class="row ml-5">`;
 				movies.forEach(function (movie) {
+					let movieUrl = `${apiBaseURL}movie/${movie.id}?api_key=${apiKey}&language=en-US`;
 					poster += `
-						<div class="card text-white bg-dark ml-2 mr-2 mb-4" style="width: 15rem;" data-toggle="modal" data-target="#${movie.id}">
+						<div class="card text-white bg-dark ml-2 mr-2 mb-4 posterMovie" style="width: 15rem;" data-toggle="modal" data-target="#M${movie.id}" data-id="${movie.id}">
 							<img class="card-img-top" src="https://image.tmdb.org/t/p/w300/${movie.poster_path}" alt="Card image cap">
 							<div class="card-body">
-								<h6 class="card-text"> ${movie.original_title}</h6>
-								<p class="card-text"> ${movie.release_date} <span class="ml-5"> ${movie.vote_average}/10 </span></p>
+							<div class="wrapper" style="height: 3rem">
+								<h6 class="card-text movie-title">  ${movie.original_title}  </h6>
+							</div>
 							</div>
 						</div>`;
-					poster += `
-						<div class="modal fade" id="${movie.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-							<div class="modal-dialog modal-dialog-centered" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="${movie.id}"> ${movie.original_title} </h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-										</button>
+					poster += `<div class="modal fade" id="M${movie.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+							<div class="card text-white bg-dark pb-3 pt-3">
+							<div class="d-flex flex-row">
+							<div class="col-4 d-flex justify-content-end">
+							<div class="card text-white bg-dark"  data-toggle="modal" data-target="#${movie.id}">
+								<img class="card-img-top" src="https://image.tmdb.org/t/p/w300/${movie.poster_path}" alt="Card image cap">
+							</div>
+							</div>
+							<div class="col-8">
+								<h3 class="card-title movie-title"> ${movie.original_title} </h3>
+									<div class="d-flex flex-row mb-3">
+										<p class="d-flex text-small justify-content-start mr-2 release_date"> ${movie.release_date} </p> &#x2022;
+										<p class="d-flex text-small justify-content-center mr-2 ml-2 rate"> ${movie.vote_average} </p> &#x2022;
+										<p class="d-flex text-small justify-content-end ml-2 duration"> </p>
 									</div>
-								<div class="modal-body">
-									${movie.original_title}
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary">Save changes</button>
-								</div>
+
+								<button type="button" class="btn btn-light"> <i class="fas fa-play"></i> Play Trailer </button>
+
+								<h6 class="text-mute mt-2 mb-2 pt-3 pb-3"></h6>
+
+								<h5> Overview </h5>
+								<p class="card-text"> ${movie.overview} </p>
 								</div>
 							</div>
-						</div>`;
+							</div>							
+							</div>
+						</div>
+					</div>`;
 				});
 				poster += '</div>'
 				document.getElementById("movie-list").innerHTML = poster;
-			});
+			})
 	}
 
-	fetchUserData();
-
-	function getDiscoverData() {
-		$.getJSON(discoverURL, function (discoverData) {
-			// console.log(nowPlayingData);
-			//we needed to add .results because nowPlayingData is an array.
-			for (let i = 0; i < discoverData.results.length; i++) {
-				// w300 is how wide it is
-				const mid = discoverData.results[i].id;
-				// mid = movie ID
-				const thisMovieUrl = apiBaseURL + 'movie/' + mid + '/videos?api_key=' + apiKey;
-				// console.log(i)
-
-				$.getJSON(thisMovieUrl, function (movieKey) {
-					// console.log(i);
-					// console.log(thisMovieUrl)
-					// console.log(movieKey)
-
-					//Need to go to that specific movie's URL to get the genres associated with it. (movieKey.id)
-					// var getGenreNameUrl = apiBaseURL + 'movie/' +movieKey.id+ '?api_key=' + apiKey;
-					// console.log(getGenreNameUrl);
-					// console.log(movieKey.id);
-
-					// $.getJSON(getGenreNameUrl, function(genreNames){
-					// 	// console.log(genreNames);//an object
-					// 	// console.log(genreNames.genres[0].name);
-
-					// 	for (let j=0; j<genreNames.genres.length; j++){
-					// 		var genre = genreNames.genres[0].name;
-					// 		// console.log(genre);
-					// 	}
-					// })
-
-					const poster = imageBaseUrl + 'w500' + discoverData.results[i].poster_path;
-					// console.log(poster);
-
-					// const row = `<div class="row ml-5">`
-					// const poster = ``;
-
-					const title = discoverData.results[i].original_title;
-
-					const releaseDate = discoverData.results[i].release_date;
-
-					const overview = discoverData.results[i].overview;
-					// $('.overview').addClass('overview');
-
-					const voteAverage = discoverData.results[i].vote_average;
-					// console.log(movieKey)
-					const youtubeKey = movieKey.results[0].key;
-
-					const youtubeLink = 'https://www.youtube.com/watch?v=' + youtubeKey;
-					// console.log(youtubeLink)
-
-					let discoverHTML = '';
-					// added in i to discoverHTML. Without it, only the details for the first movie in the results display in the modal no matter which movie poster you click on.
-					discoverHTML += '<div class="col-sm-3 eachMovie">';
-					discoverHTML += '<button type="button" class="btnModal" data-toggle="modal" data-target="#exampleModal' + i + '" data-whatever="@' + i + '">' + '<img src="' + poster + '"></button>';
-					discoverHTML += '<div class="modal fade" id="exampleModal' + i + '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-					discoverHTML += '<div class="modal-dialog" role="document">';
-					discoverHTML += '<div class="modal-content col-sm-12">';
-					discoverHTML += '<div class="col-sm-6 moviePosterInModal">';
-					discoverHTML += '<a href="' + youtubeLink + '"><img src="' + poster + '"></a>';
-					discoverHTML += '</div><br>'; //close trailerLink
-					discoverHTML += '<div class="col-sm-6 movieDetails">';
-					discoverHTML += '<div class="movieName">' + title + '</div><br>';
-					discoverHTML += '<div class="linkToTrailer"><a href="' + youtubeLink + '"><span class="glyphicon glyphicon-play"></span>&nbspPlay trailer</a>' + '</div><br>';
-					discoverHTML += '<div class="release">Release Date: ' + releaseDate + '</div><br>';
-					// discoverHTML += '<div class="genre">Genre: '+genre+'</div><br>';
-					discoverHTML += '<div class="overview">' + overview + '</div><br>'; // Put overview in a separate div to make it easier to style
-					discoverHTML += '<div class="rating">Rating: ' + voteAverage + '/10</div><br>';
-					discoverHTML += '<div class="col-sm-3 btn btn-primary">8:30 AM' + '</div>';
-					discoverHTML += '<div class="col-sm-3 btn btn-primary">10:00 AM' + '</div>';
-					discoverHTML += '<div class="col-sm-3 btn btn-primary">12:30 PM' + '</div>';
-					discoverHTML += '<div class="col-sm-3 btn btn-primary">3:00 PM' + '</div>';
-					discoverHTML += '<div class="col-sm-3 btn btn-primary">4:10 PM' + '</div>';
-					discoverHTML += '<div class="col-sm-3 btn btn-primary">5:30 PM' + '</div>';
-					discoverHTML += '<div class="col-sm-3 btn btn-primary">8:00 PM' + '</div>';
-					discoverHTML += '<div class="col-sm-3 btn btn-primary">10:30 PM' + '</div>';
-					discoverHTML += '</div>'; //close movieDetails
-					discoverHTML += '</div>'; //close modal-content
-					discoverHTML += '</div>'; //close modal-dialog
-					discoverHTML += '</div>'; //close modal
-					discoverHTML += '</div>'; //close off each div
-
-					$('#movie-grid').append(discoverHTML);
-					//Without this line, there is nowhere for the posters and overviews to display so it doesn't show up 
-					// $('#op').html('<div class="row ml-5">');
-					// $('#movie-list').append(discoveryHTML);
-					// $('#ed').html('</div>');
-					$('#movieGenreLabel').html("Discover Movie");
-					//h1 will change depending on what is clicked. Will display "Now Playing" in this case.
-				})
-			}
-		})
-	}
-	//==============================================================================
-	//====================== Get movies by genre ===================================
-	//==============================================================================
-
-	// Check genreIDs and genre names: 
-	// http://api.themoviedb.org/3/movie/:movieID?api_key=<<>>
-	//28 = action
-	//12 = adventure
-	//16 = animation
-	//35 = comedy
-	//80 = crime
-	//18 = drama
-	//10751 = family
-	//14 = fantasy
-	//36 = history
-	//27 = horror
-	//10402 = music
-	//10749 = romance
-	//878 = science fiction
-	//53 = thriller
-
-	function getMoviesByGenre(genre_id) {
-		const getMoviesByGenreURL = apiBaseURL + 'genre/' + genre_id + '/movies?api_key=' + apiKey + '&language=en-US&include_adult=false&sort_by=created_at.asc';
-		// console.log(getMoviesByGenreURL);
-
-		$.getJSON(getMoviesByGenreURL, function (genreData) {
-			// console.log(genreData)
-			for (let i = 0; i < genreData.results.length; i++) {
-				const mid = genreData.results[i].id;
-				const thisMovieUrl = apiBaseURL + 'movie/' + mid + '/videos?api_key=' + apiKey;
-
-				$.getJSON(thisMovieUrl, function (movieKey) {
-					var poster = imageBaseUrl + 'w300' + genreData.results[i].poster_path;
-					var title = genreData.results[i].original_title;
-					var releaseDate = genreData.results[i].release_date;
-					var overview = genreData.results[i].overview;
-					var voteAverage = genreData.results[i].vote_average;
-					var youtubeKey = movieKey.results[0].key;
-					var youtubeLink = 'https://www.youtube.com/watch?v=' + youtubeKey;
-					var genreHTML = '';
-					genreHTML += '<div class="col-sm-3 col-md-3 col-lg-3 eachMovie">';
-					genreHTML += '<button type="button" class="btnModal" data-toggle="modal" data-target="#exampleModal' + i + '" data-whatever="@' + i + '">' + '<img src="' + poster + '"></button>';
-					genreHTML += '<div class="modal fade" id="exampleModal' + i + '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-					genreHTML += '<div class="modal-dialog" role="document">';
-					genreHTML += '<div class="modal-content col-sm-12 col-lg-12">';
-					genreHTML += '<div class="col-sm-6 moviePosterInModal">';
-					genreHTML += '<a href="' + youtubeLink + '"><img src="' + poster + '"></a>';
-					genreHTML += '</div><br>'; //close trailerLink
-					genreHTML += '<div class="col-sm-6 movieDetails">';
-					genreHTML += '<div class="movieName">' + title + '</div><br>';
-					genreHTML += '<div class="linkToTrailer"><a href="' + youtubeLink + '"><span class="glyphicon glyphicon-play"></span>&nbspPlay trailer</a>' + '</div><br>';
-					genreHTML += '<div class="release">Release Date: ' + releaseDate + '</div><br>';
-					genreHTML += '<div class="overview">' + overview + '</div><br>';
-					genreHTML += '<div class="rating">Rating: ' + voteAverage + '/10</div><br>';
-					genreHTML += '<div class="col-sm-3 btn btn-primary">8:30 AM' + '</div>';
-					genreHTML += '<div class="col-sm-3 btn btn-primary">10:00 AM' + '</div>';
-					genreHTML += '<div class="col-sm-3 btn btn-primary">12:30 PM' + '</div>';
-					genreHTML += '<div class="col-sm-3 btn btn-primary">3:00 PM' + '</div>';
-					genreHTML += '<div class="col-sm-3 btn btn-primary">4:10 PM' + '</div>';
-					genreHTML += '<div class="col-sm-3 btn btn-primary">5:30 PM' + '</div>';
-					genreHTML += '<div class="col-sm-3 btn btn-primary">8:00 PM' + '</div>';
-					genreHTML += '<div class="col-sm-3 btn btn-primary">10:30 PM' + '</div>';
-					genreHTML += '</div>'; //close movieDetails
-					genreHTML += '</div>'; //close modal-content
-					genreHTML += '</div>'; //close modal-dialog
-					genreHTML += '</div>'; //close modal
-					genreHTML += '</div>'; //close off each div
-					$('#movie-grid').append(genreHTML);
-					//Without this line, there is nowhere for the posters and overviews to display so it doesn't show up 
-					// $('#movieGenreLabel').html("Now Playing");
-					//h1 will change depending on what is clicked. Will display "Now Playing" in this case.
-				})
-			}
-		})
-	}
-	// call getMoviesByGenre using click function but call getDiscoverData on default.
-	getDiscoverData();
-
-	//Reset HTML strings to empty to overwrite with new one!
-	var discoverHTML = '';
-	var genreHTML = '';
-
-	$('.navbar-brand').click(function () {
-		getDiscoverData();
-		$('#movie-grid').html(discoverHTML);
-		$('#movieGenreLabel').html("Discover Movie");
-	})
-	$('.nowPlaying').click(function () {
-		getDiscoverData();
-		$('#movie-grid').html(discoverHTML);
-		$('#movieGenreLabel').html("Discover Movie");
-	})
-	$('#action').click(function () {
-		getMoviesByGenre(28);
-		$('#movie-grid').html(genreHTML);
-		$('#movieGenreLabel').html("Action");
-	})
-	$('#adventure').click(function () {
-		getMoviesByGenre(12);
-		$('#movie-grid').html(genreHTML);
-		$('#movieGenreLabel').html("Adventure");
-	})
-	$('#animation').click(function () {
-		getMoviesByGenre(16);
-		$('#movie-grid').html(genreHTML);
-		$('#movieGenreLabel').html("Animation");
-	})
-	$('#comedy').click(function () {
-		getMoviesByGenre(35);
-		$('#movie-grid').html(genreHTML);
-		$('#movieGenreLabel').html("Comedy");
-	})
-	$('#crime').click(function () {
-		getMoviesByGenre(80);
-		$('#movie-grid').html(genreHTML);
-		$('#movieGenreLabel').html("Crime");
-	})
-	$('#drama').click(function () {
-		getMoviesByGenre(18);
-		$('#movie-grid').html(genreHTML);
-		$('#movieGenreLabel').html("Drama");
-	})
-	$('#family').click(function () {
-		getMoviesByGenre(10751);
-		$('#movie-grid').html(genreHTML);
-		$('#movieGenreLabel').html("Family");
-	})
-	$('#fantasy').click(function () {
-		getMoviesByGenre(14);
-		$('#movie-grid').html(genreHTML);
-		$('#movieGenreLabel').html("Fantasy");
-	})
-	$('#history').click(function () {
-		getMoviesByGenre(36);
-		$('#movie-grid').html(genreHTML);
-		$('#movieGenreLabel').html("History");
-	})
-	$('#horror').click(function () {
-		getMoviesByGenre(27);
-		$('#movie-grid').html(genreHTML);
-		$('#movieGenreLabel').html("Horror");
-	})
-	$('#music').click(function () {
-		getMoviesByGenre(10402);
-		$('#movie-grid').html(genreHTML);
-		$('#movieGenreLabel').html("Music");
-	})
-	$('#romance').click(function () {
-		getMoviesByGenre(10749);
-		$('#movie-grid').html(genreHTML);
-		$('#movieGenreLabel').html("Romance");
-	})
-	$('#scifi').click(function () {
-		getMoviesByGenre(878);
-		$('#movie-grid').html(genreHTML);
-		$('#movieGenreLabel').html("Science Fiction");
-	})
-	$('#thriller').click(function () {
-		getMoviesByGenre(53);
-		$('#movie-grid').html(genreHTML);
-		$('#movieGenreLabel').html("Thriller");
-	})
-
-	//==============================================================================
-	//====================== Search Function =======================================
-	//==============================================================================
-
-	//Run function searchMovies AFTER an input has been submitted. Submit form first.
-	//Run searchMovies once to add an empty html to movie-grid using .html(). Then, overwrite it with the new html using .append(). Need to use .append() to overwrite or all the images will display on top of each other.
-
-	var searchTerm = '';
-	searchMovies();
-	//reference entire search form
-	$('.searchForm').submit(function (event) {
-		$('#movie-grid').html('');
-		event.preventDefault();
-		//search term is only concerned with what the user inputted 
-		//Get input with .val();
-		searchTerm = $('.form-control').val();
-		searchMovies();
-	})
-
-	function searchMovies() {
-		//need to include query in url. (ex: &query=boss+baby)
-		const searchMovieURL = apiBaseURL + 'search/movie?api_key=' + apiKey + '&language=en-US&page=1&include_adult=false&query=' + searchTerm;
-		// console.log(searchMovieURL);
-		$.getJSON(searchMovieURL, function (movieSearchResults) {
-			// console.log(movieSearchResults);
-			for (let i = 0; i < movieSearchResults.results.length; i++) {
-				var mid = movieSearchResults.results[i].id;
-				var thisMovieUrl = apiBaseURL + 'movie/' + mid + '/videos?api_key=' + apiKey;
-
-				$.getJSON(thisMovieUrl, function (movieKey) {
-					// console.log(movieKey)
-					var poster = imageBaseUrl + 'w300' + movieSearchResults.results[i].poster_path;
-					var title = movieSearchResults.results[i].original_title;
-					var releaseDate = movieSearchResults.results[i].release_date;
-					var overview = movieSearchResults.results[i].overview;
-					var voteAverage = movieSearchResults.results[i].vote_average;
-					var youtubeKey = movieKey.results[0].key;
-					var youtubeLink = 'https://www.youtube.com/watch?v=' + youtubeKey;
-					var searchResultsHTML = '';
-					searchResultsHTML += '<div class="col-sm-3 col-md-3 col-lg-3 eachMovie">';
-					searchResultsHTML += '<button type="button" class="btnModal" data-toggle="modal" data-target="#exampleModal' + i + '" data-whatever="@' + i + '">' + '<img src="' + poster + '"></button>';
-					searchResultsHTML += '<div class="modal fade" id="exampleModal' + i + '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-					searchResultsHTML += '<div class="modal-dialog" role="document">';
-					searchResultsHTML += '<div class="modal-content col-sm-12 col-lg-12">';
-					searchResultsHTML += '<div class="col-sm-6 moviePosterInModal">';
-					searchResultsHTML += '<a href="' + youtubeLink + '"><img src="' + poster + '"></a>';
-					searchResultsHTML += '</div><br>'; //close trailerLink
-					searchResultsHTML += '<div class="col-sm-6 movieDetails">';
-					searchResultsHTML += '<div class="movieName">' + title + '</div><br>';
-					searchResultsHTML += '<div class="linkToTrailer"><a href="' + youtubeLink + '"><span class="glyphicon glyphicon-play"></span>&nbspPlay trailer</a>' + '</div><br>';
-					searchResultsHTML += '<div class="release">Release Date: ' + releaseDate + '</div><br>';
-					searchResultsHTML += '<div class="overview">' + overview + '</div><br>';
-					searchResultsHTML += '<div class="rating">Rating: ' + voteAverage + '/10</div><br>';
-					searchResultsHTML += '<div class="col-sm-3 btn btn-primary">8:30 AM' + '</div>';
-					searchResultsHTML += '<div class="col-sm-3 btn btn-primary">10:00 AM' + '</div>';
-					searchResultsHTML += '<div class="col-sm-3 btn btn-primary">12:30 PM' + '</div>';
-					searchResultsHTML += '<div class="col-sm-3 btn btn-primary">3:00 PM' + '</div>';
-					searchResultsHTML += '<div class="col-sm-3 btn btn-primary">4:10 PM' + '</div>';
-					searchResultsHTML += '<div class="col-sm-3 btn btn-primary">5:30 PM' + '</div>';
-					searchResultsHTML += '<div class="col-sm-3 btn btn-primary">8:00 PM' + '</div>';
-					searchResultsHTML += '<div class="col-sm-3 btn btn-primary">10:30 PM' + '</div>';
-					searchResultsHTML += '</div>'; //close movieDetails
-					searchResultsHTML += '</div>'; //close modal-dialog
-					searchResultsHTML += '</div>'; //close modal
-					searchResultsHTML += '</div>'; //close off each div
-					// console.log(searchResultsHTML)
-					$('#movie-grid').append(searchResultsHTML);
-					//Label will be whatever user input was
-					$('#movieGenreLabel').html(searchTerm);
-				})
-			}
-		})
-	}
+	fetchMovieData();
 });
-
-
-//.append(discoverHTML) adds discoverHTML to the present HTML
-//.html(discoverHTML) ovwrwrites the HTML present with discoverHTML. 
-//.html() is faster than DOM creation
-//.html() is good for when the element is empty. 
-//.append() is better when you want to add something dynamically, like adding a list item dynamically. (You would be adding a new string of HTML to the element.)
