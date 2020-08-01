@@ -22,15 +22,18 @@ $(document).ready(function () {
 				movies.forEach(function (movie) {
 					let movieUrl = `${apiBaseURL}movie/${movie.id}?api_key=${apiKey}&language=en-US`;
 					poster += `
-						<div class="card text-white bg-dark ml-2 mr-2 mb-4 posterMovie" style="width: 15rem;" data-toggle="modal" data-target="#M${movie.id}" data-id="${movie.id}">
-							<img class="card-img-top" src="https://image.tmdb.org/t/p/w300/${movie.poster_path}" alt="Card image cap">
+						<div class="card text-white bg-dark ml-2 mr-2 mb-4 " style="width: 15rem;" data-toggle="modal" data-target="#${movie.id}">
+							<img class="card-img-top" src="https://image.tmdb.org/t/p/w300/${movie.poster_path}" alt="${movie.original_title}">
 							<div class="card-body">
 							<div class="wrapper" style="height: 3rem">
 								<h6 class="card-text movie-title">  ${movie.original_title}  </h6>
 							</div>
 							</div>
 						</div>`;
-					poster += `<div class="modal fade" id="M${movie.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					poster += `
+					<poster-image src="https://image.tmdb.org/t/p/w300/${movie.poster_path}" alt="${movie.original_title}" title="${movie.original_title}"
+					data-target="#${movie.id}"> </poster-image>`;
+					poster += `<div class="modal fade" id="${movie.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-lg" role="document">
 							<div class="modal-content">
 							<div class="card text-white bg-dark pb-3 pt-3">

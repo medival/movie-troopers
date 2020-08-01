@@ -13,7 +13,7 @@
   <!-- Optional theme -->
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"> -->
   <!-- CUSTOM STYLES -->
-  <link rel="stylesheet" type="text/css" href="CSS/styles.css">
+  <link rel="stylesheet" type="text/css" href="/src/css/styles.css">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Carrois+Gothic+SC" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -32,7 +32,8 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
   </script>
   <!-- CUSTOM JS -->
-  <script type="text/javascript" src="js/scripts.js"></script>
+  <script type="text/javascript" src="/src/js/scripts.js"></script>
+  <script type="text/javascript" src="/src/js/poster-image.js"></script>
 
 </head>
 
@@ -86,22 +87,13 @@
     <div class="genreLabel">
       <h1 id="movieGenreLabel"></h1>
       <div class="poster" id="poster"></div>
-      <div id="movie-list"></div>
-      <div id="movie-details"></div>
-    </div>
-  </div>
+      <poster-image src="https://image.tmdb.org/t/p/w300//jHo2M1OiH9Re33jYtUQdfzPeUkx.jpg" alt="Scoob!" title="Scoob!"
+        target="385103">
+      </poster-image>
+      <div id="movie-list">
 
-  <!-- Displaying the movies -->
-  <div class="container">
-    <div class="row">
-      <div class="genreLabel">
-        <h1 id="movieGenreLabel"></h1>
       </div>
-      <br>
-      <!-- I need the h1 to change accordingly depending on what was clicked. -->
-      <div id="movie-grid">
-        <!-- Jquery get us the movie posters! Need a place to put the poster images -->
-      </div>
+      <div id="movie-details"></div>
     </div>
   </div>
 
