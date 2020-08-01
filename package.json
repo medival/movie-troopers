@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "http-server"
 	},
 	"author": "Adi Purnomo",
 	"license": "ISC",
@@ -15,6 +16,8 @@
 		"jquery": "^3.5.1"
 	},
 	"devDependencies": {
-		"http-server": "^0.12.3"
+		"http-server": "^0.12.3",
+		"webpack": "^4.44.1",
+		"webpack-cli": "^3.3.12"
 	}
 }
