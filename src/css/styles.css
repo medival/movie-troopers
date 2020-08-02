@@ -4,12 +4,8 @@
 }
 
 body {
-	background-color: var(--primary-color);
+	background-color: var(--primary-color) !important;
 }
-
-/* .modal-content {
-	background: url('https://cdn.techinasia.com/wp-content/uploads/2011/09/Doodle4Google-2010-Group-1-Winner.jpg');
-} */
 
 .navbar-brand {
 	font-size: 20px;
@@ -23,9 +19,8 @@ body {
 }
 
 .modal-content {
-	background: var(--secondary-color);
+	background-color: var(--secondary-color) !important;
 	padding: 2px;
-	/* min-width: 656px; */
 }
 
 .movie-title {
