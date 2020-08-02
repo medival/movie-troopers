@@ -1,6 +1,7 @@
 // import "font-awesome";
 import "bootstrap";
 import "../css/styles.css";
+import "hover.css";
 
 import "jquery";
 import "popper.js";

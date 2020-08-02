@@ -1,89 +1,124 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-	<title>Movie App</title>
-	<!-- 
+	<head>
+		<title>Movie App</title>
+		<!-- 
 		<link
 			rel="stylesheet"
 			href="/node_modules/bootstrap/dist/css/bootstrap.min.css"
 		/> -->
 
-	<!-- <link rel="stylesheet" type="text/css" href="/src/css/styles.css" /> -->
-	<!-- Google Fonts -->
-	<!-- <link
+		<!-- <link rel="stylesheet" type="text/css" href="/src/css/styles.css" /> -->
+		<!-- Google Fonts -->
+		<!-- <link
 			href="https://fonts.googleapis.com/css?family=Carrois+Gothic+SC"
 			rel="stylesheet"
 		/> -->
-	<!-- <link
+		<!-- <link
 			rel="stylesheet"
 			href="/node_modules/font-awesome/css/font-awesome.min.css"
 		/> -->
-	<script src="http://ianlunn.github.io/Hover/css/hover.css"></script>
-	<script type="text/javascript" src="/dist/index.js"></script>
+		<!-- <link rel="stylesheet" href="http://ianlunn.github.io/Hover/css/hover.css"> -->
+		<script type="text/javascript" src="/dist/index.js"></script>
 
-	<!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+		<!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 		<script src="/node_modules/@popperjs/core/dist/esm/popper.js"></script>
 		<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
-	<!-- CUSTOM JS -->
-</head>
+		<!-- CUSTOM JS -->
+	</head>
 
-<body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-		<div class="container">
-			<a class="navbar-brand" href="#">Movie Troopers</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+			<div class="container">
+				<a class="navbar-brand" href="#">Movie Troopers</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="#">Discover <span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Genre
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a href="#" class="dropdown-item action" id="action">Action</a>
-							<a href="#" class="dropdown-item adventure" id="adventure">Adventure</a>
-							<a href="#" class="dropdown-item animation" id="animation">Animation</a>
-							<a href="#" class="dropdown-item comedy" id="comedy">Comedy</a>
-							<a href="#" class="dropdown-item crime" id="crime">Crime</a>
-							<a href="#" class="dropdown-item drama" id="drama">Drama</a>
-							<a href="#" class="dropdown-item family" id="family">Family</a>
-							<a href="#" class="dropdown-item fantasy" id="fantasy">Fantasy</a>
-							<a href="#" class="dropdown-item history" id="history">History</a>
-							<a href="#" class="dropdown-item music" id="music">Music</a>
-							<a href="#" class="dropdown-item romance" id="romance">Romance</a>
-							<a href="#" class="dropdown-item scifi" id="scifi">Science Fiction</a>
-							<a href="#" class="dropdown-item thriller" id="thriller">Thriller</a>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="#"
+								>Discover <span class="sr-only">(current)</span></a
+							>
+						</li>
+						<li class="nav-item dropdown">
+							<a
+								class="nav-link dropdown-toggle"
+								href="#"
+								id="navbarDropdown"
+								role="button"
+								data-toggle="dropdown"
+								aria-haspopup="true"
+								aria-expanded="false"
+							>
+								Genre
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a href="#" class="dropdown-item action" id="action">Action</a>
+								<a href="#" class="dropdown-item adventure" id="adventure"
+									>Adventure</a
+								>
+								<a href="#" class="dropdown-item animation" id="animation"
+									>Animation</a
+								>
+								<a href="#" class="dropdown-item comedy" id="comedy">Comedy</a>
+								<a href="#" class="dropdown-item crime" id="crime">Crime</a>
+								<a href="#" class="dropdown-item drama" id="drama">Drama</a>
+								<a href="#" class="dropdown-item family" id="family">Family</a>
+								<a href="#" class="dropdown-item fantasy" id="fantasy"
+									>Fantasy</a
+								>
+								<a href="#" class="dropdown-item history" id="history"
+									>History</a
+								>
+								<a href="#" class="dropdown-item music" id="music">Music</a>
+								<a href="#" class="dropdown-item romance" id="romance"
+									>Romance</a
+								>
+								<a href="#" class="dropdown-item scifi" id="scifi"
+									>Science Fiction</a
+								>
+								<a href="#" class="dropdown-item thriller" id="thriller"
+									>Thriller</a
+								>
+							</div>
+						</li>
+					</ul>
+					<form class="form-inline my-2 my-lg-0 searchForm">
+						<div class="form-group">
+							<input
+								class="form-control mr-sm-2"
+								type="search"
+								placeholder="Search Movie"
+								aria-label="Search"
+							/>
+							<button
+								class="btn btn-outline-success my-2 my-sm-0"
+								type="submit"
+							>
+								Search
+							</button>
 						</div>
-					</li>
-				</ul>
-				<form class="form-inline my-2 my-lg-0 searchForm">
-					<div class="form-group">
-						<input class="form-control mr-sm-2" type="search" placeholder="Search Movie"
-							aria-label="Search" />
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-							Search
-						</button>
-					</div>
-				</form>
+					</form>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container mt-5 pt-3">
+			<div class="genreLabel">
+				<h1 id="movieGenreLabel"></h1>
+				<div class="poster" id="poster"></div>
+				<div id="movie-list"></div>
 			</div>
 		</div>
-	</nav>
-
-	<div class="container mt-5 pt-3">
-		<div class="genreLabel">
-			<h1 id="movieGenreLabel"></h1>
-			<div class="poster" id="poster"></div>
-			<div id="movie-list"></div>
-		</div>
-	</div>
-</body>
-
+	</body>
 </html>

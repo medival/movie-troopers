@@ -10,7 +10,7 @@ class PosterImage extends HTMLElement {
 		this.overview = this.getAttribute("overview") || null;
 
 		this.innerHTML = `
-        <div class="card text-white bg-dark ml-2 mr-2 mb-4 " style="width: 15rem;" data-toggle="modal" data-target="#${this.target}">
+        <div class="card text-white bg-dark ml-2 mr-2 mb-4 hvr-grow" style="width: 15rem;" data-toggle="modal" data-target="#${this.target}">
             <img class="card-img-top" src="${this.src}" alt="${this.alt}">
                 <div class="card-body">
                 <div class="wrapper" style="height: 3rem">
