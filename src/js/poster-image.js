@@ -13,8 +13,8 @@ class PosterImage extends HTMLElement {
         <div class="card text-white bg-dark ml-2 mr-2 mb-4 hvr-grow" style="width: 15rem;" data-toggle="modal" data-target="#${this.target}">
             <img class="card-img-top" src="${this.src}" alt="${this.alt}">
                 <div class="card-body">
-                <div class="wrapper" style="height: 3rem">
-                    <h6 class="card-text"> ${this.title} </h6>
+                <div class="wrapper" style="height: 4rem">
+					<h6 class="card-text"> ${this.title} </h6>
                 </div>
             </div>
         </div>

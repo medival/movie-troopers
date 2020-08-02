@@ -4,11 +4,13 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"start-dev": "http-server",
 		"build": "webpack"
 	},
 	"author": "Adi Purnomo",
 	"license": "ISC",
 	"dependencies": {
+		"@fortawesome/fontawesome-free": "^5.14.0",
 		"@popperjs/core": "^2.4.4",
 		"autoprefixer": "^9.8.6",
 		"bootstrap": "^4.0.0",

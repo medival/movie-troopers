@@ -1,11 +1,22 @@
-// import "font-awesome";
-import "bootstrap";
-import "../css/styles.css";
-import "hover.css";
+// import font-awesome
+import "@fortawesome/fontawesome-free/js/fontawesome";
+import "@fortawesome/fontawesome-free/js/solid";
+import "@fortawesome/fontawesome-free/js/regular";
+import "@fortawesome/fontawesome-free/js/brands";
 
+// import bootstrap
+import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery";
 import "popper.js";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap";
+
+// import hover.css
+import "hover.css";
+
+// import custom syle
+import "../css/styles.css";
+
+// import custom element
 import "./poster-image";
 
 $(document).ready(function () {

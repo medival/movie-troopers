@@ -2,29 +2,29 @@
 <html>
 	<head>
 		<title>Movie App</title>
-		<!-- 
-		<link
+
+		<!-- <link
 			rel="stylesheet"
 			href="/node_modules/bootstrap/dist/css/bootstrap.min.css"
-		/> -->
+		/>
 
-		<!-- <link rel="stylesheet" type="text/css" href="/src/css/styles.css" /> -->
-		<!-- Google Fonts -->
-		<!-- <link
-			href="https://fonts.googleapis.com/css?family=Carrois+Gothic+SC"
-			rel="stylesheet"
-		/> -->
-		<!-- <link
+		<link rel="stylesheet" type="text/css" href="/src/css/styles.css" />
+
+		<link
 			rel="stylesheet"
 			href="/node_modules/font-awesome/css/font-awesome.min.css"
-		/> -->
-		<!-- <link rel="stylesheet" href="http://ianlunn.github.io/Hover/css/hover.css"> -->
-		<script type="text/javascript" src="/dist/index.js"></script>
+		/>
+		<link
+			rel="stylesheet"
+			href="http://ianlunn.github.io/Hover/css/hover.css"
+		/>
 
-		<!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="/node_modules/jquery/dist/jquery.min.js"></script>
 		<script src="/node_modules/@popperjs/core/dist/esm/popper.js"></script>
 		<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
+
 		<!-- CUSTOM JS -->
+		<script type="text/javascript" src="/src/js/index.js"></script>
 	</head>
 
 	<body>
@@ -46,9 +46,12 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active">
-							<a class="nav-link" href="#"
-								>Discover <span class="sr-only">(current)</span></a
-							>
+							<a class="nav-link" href="#" data-category="popular"> Popular </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#" data-category="trending">
+								Trending
+							</a>
 						</li>
 						<li class="nav-item dropdown">
 							<a
