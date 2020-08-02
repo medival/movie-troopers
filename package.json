@@ -4,19 +4,27 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "http-server .",
 		"build": "webpack"
 	},
 	"author": "Adi Purnomo",
 	"license": "ISC",
 	"dependencies": {
 		"@popperjs/core": "^2.4.4",
-		"font-awesome": "^4.7.0",
+		"autoprefixer": "^9.8.6",
 		"bootstrap": "^4.0.0",
-		"jquery": "^3.5.1"
+		"copy-webpack-plugin": "^6.0.3",
+		"font-awesome": "^4.7.0",
+		"jquery": "^3.5.1",
+		"popper.js": "^1.16.1"
 	},
 	"devDependencies": {
+		"css-loader": "^4.2.0",
+		"html-webpack-plugin": "^4.3.0",
 		"http-server": "^0.12.3",
+		"mini-css-extract-plugin": "^0.9.0",
+		"postcss-loader": "^3.0.0",
+		"sass-loader": "^9.0.2",
+		"style-loader": "^1.2.1",
 		"webpack": "^4.44.1",
 		"webpack-cli": "^3.3.12"
 	}
