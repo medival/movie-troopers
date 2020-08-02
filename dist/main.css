@@ -4162,6 +4162,7 @@
 
 body {
 	background-color: var(--primary-color) !important;
+	color: var(--primary-color);
 }
 
 .navbar-brand {
@@ -4176,11 +4177,19 @@ body {
 }
 
 .modal-content {
-	background-color: var(--secondary-color) !important;
+	background-color: var(--primary-color) !important;
 	padding: 2px;
 }
 
 .movie-title {
 	font-weight: bold;
 	font-family: 'Carrois Gothic SC', sans-serif;
+}
+
+.card {
+	border: none !important;
+}
+
+.card-body {
+	background-color: var(--primary-color);
 }

@@ -1,5 +1,4 @@
 class PosterImage extends HTMLElement {
-
 	connectedCallback() {
 		this.src = this.getAttribute("src") || null;
 		this.alt = this.getAttribute("alt") || null;

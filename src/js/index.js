@@ -13,6 +13,9 @@ import "bootstrap";
 // import hover.css
 import "hover.css";
 
+// import animejs
+import anime from "animejs/lib/anime.es.js";
+
 // import custom syle
 import "../css/styles.css";
 
@@ -27,15 +30,24 @@ $(document).ready(function () {
 	var imageBaseUrl = "https://image.tmdb.org/t/p/";
 
 	const apiKey = "347b5a9b833c7d6e9204afe6d6ddc4a2";
-
-	const discoverURL = apiBaseURL + "movie/now_playing?api_key=" + apiKey;
-
-	const endPoint = apiBaseURL + "trending/movie/week?api_key=" + apiKey;
+	const nowPlayingUrl = apiBaseURL + "movie/now_playing?api_key=" + apiKey;
+	const trendingUrl = apiBaseURL + "trending/movie/week?api_key=" + apiKey;
 	let movies;
-	console.log(endPoint);
+	console.log(trendingUrl);
 
-	function fetchMovieData() {
-		fetch(endPoint)
+	const trendingTrigger = document.getElementById("trending");
+	const now_playingTrigger = document.getElementById("now_playing");
+
+	now_playingTrigger.onclick(fetchMovieData(nowPlayingUrl));
+
+	if (now_playingTrigger.onclick) {
+		fetchMovieData(nowPlayingUrl);
+	} else {
+		fetchMovieData(trendingUrl);
+	}
+
+	function fetchMovieData(trendingUrl) {
+		fetch(trendingUrl)
 			.then((response) => response.json())
 			.then((results) => (movies = results.results))
 			.then((movies) => {
@@ -47,6 +59,4 @@ $(document).ready(function () {
 				document.getElementById("movie-list").innerHTML = html;
 			});
 	}
-
-	fetchMovieData();
 });
