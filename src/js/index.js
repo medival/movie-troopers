@@ -59,4 +59,42 @@ $(document).ready(function () {
 				document.getElementById("movie-list").innerHTML = html;
 			});
 	}
+
+	anime({
+		targets: ".genreLabel h1",
+		translateX: [-200, 0],
+		easing: "easeOutExpo",
+		duration: 1500,
+		delay: 1000,
+		opacity: [0, 1],
+	});
+
+	anime({
+		targets: "#poster",
+		translateY: [200, 0],
+		easing: "easeOutExpo",
+		duration: 1500,
+		delay: 1000,
+		opacity: [0, 1],
+	});
+});
+
+document.addEventListener(() => {
+	anime({
+		targets: ".genreLabel h1",
+		translateX: [-200, 0],
+		easing: "easeOutExpo",
+		duration: 1500,
+		delay: 1000,
+		opacity: [0, 1],
+	});
+
+	anime({
+		targets: "#poster",
+		translateY: [200, 0],
+		easing: "easeOutExpo",
+		duration: 1500,
+		delay: 1000,
+		opacity: [0, 1],
+	});
 });

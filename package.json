@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@fortawesome/fontawesome-free": "^5.14.0",
 		"@popperjs/core": "^2.4.4",
+		"animejs": "^3.2.0",
 		"autoprefixer": "^9.8.6",
 		"bootstrap": "^4.0.0",
 		"copy-webpack-plugin": "^6.0.3",

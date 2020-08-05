@@ -4158,6 +4158,7 @@
 :root {
 	--primary-color: #24273D;
 	--secondary-color: #343A40;
+	--white: #fff;
 }
 
 body {
@@ -4171,9 +4172,12 @@ body {
 	color: var(--secondary-color);
 }
 
+#movieGenreLabel {
+	color: var(--white);
+}
+
 .modal-dialog {
 	min-width: 100%;
-	color: red;
 }
 
 .modal-content {
