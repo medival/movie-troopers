@@ -1,7 +1,7 @@
 {
 	"name": "movie-trooper",
 	"version": "1.0.0",
-	"description": "Movie finder",
+	"description": "Movie explorer",
 	"main": "app.js",
 	"author": "Adi Purnomo",
 	"license": "ISC",
