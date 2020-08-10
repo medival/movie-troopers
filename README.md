@@ -1,5 +1,5 @@
 # Description
-movie-troopers - is a movie explorer using Themoviedb API
+movie-troopers - is a movie explorer using Themoviedb API and Bootstrap v.4.5
 
 A submission Dicoding from class "Front-End End Web Development". submission has been accepted and repos still in development
 
