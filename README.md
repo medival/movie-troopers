@@ -7,6 +7,11 @@ A submission Dicoding from class "Front-End End Web Development". submission has
 
 ![alt screenshoot](https://github.com/medival/movie-troopers/blob/master/screenshoot/screenshoot.png)
 
+
+### Live Preview
+
+[Live Preview](https://medival.github.io/movie-troopers)
+
 ### Instalation
 
 1. Clone the project `git clone https://github.com/medival/movie-troopers.git`
